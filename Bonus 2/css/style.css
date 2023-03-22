@@ -10,5 +10,16 @@ body {
 
 /* ***** HEADER ***** */
 header {
-    background-color: #5EFC8D;
+    background-color: #8DDCA4;
+}
+
+.ms_container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* ***** MAIN ***** */
+/* Card */
+.card-body {
+    background-color: #93BEDF;
 }

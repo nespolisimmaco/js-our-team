@@ -33,35 +33,33 @@ const team = [
     }
 ];
 
-// Stampare su console e sul DOM le informazioni di nome, ruolo e la stringa della foto
+// Organizzare i singoli membri in card/schede
+const row = document.querySelector(".row");
+let cards = "";
+// Inserisco le card nel DOM
 for (let i = 0; i < team.length; i++) {
-    const teamMember = team[i];
-    console.log("Membro del team:", teamMember);
-    let memberInfos = `Membro ${i+1} `;
-    for (const key in teamMember) {
-        console.log(key, teamMember[key]);
-        if (key !== "foto") {
-            memberInfos += `- ${key}: ${teamMember[key]} `;
-        } else {
-            memberInfos += `<img src="img/${teamMember[key]}" alt="${teamMember.nome}">`
-        }
-    }
-    console.log(memberInfos);
-    const teamMembers = document.querySelector(".team");
-    const member = createTeamMember(memberInfos);
-    teamMembers.append(member);
+    generateCard(i);
+    row.innerHTML += cards;
 }
 
 /////////////////////////
 // FUNCTIONS
 
 /**
- * Description creo il membro del team
- * @param {string} infos
- * @returns {any}
+ * Description Genero la card da inserire nel DOM
+ * @param {number} index Indice del ciclo for che scorre tutto l'array di oggetti
  */
-function createTeamMember(infos) {
-    const member = document.createElement("li");
-    member.innerHTML = infos;
-    return member;
+function generateCard(index) {
+    const teamMember = team[index];
+    console.log("Membro del team:", teamMember);
+    cards = `
+    <div class="col">
+        <div class="card rounded">
+            <img class="card-img-top" src="img/${teamMember.foto}" alt="${teamMember.nome}">
+            <div class="card-body">
+                <h5 class="card-title text-center">${teamMember.nome}</h5>
+                <p class="card-text text-center">${teamMember.ruolo}</p>
+            </div>
+        </div>
+    </div>`;
 }
