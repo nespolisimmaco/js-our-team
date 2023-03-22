@@ -33,11 +33,31 @@ const team = [
     }
 ];
 
-// Stampare su console le informazioni di nome, ruolo e la stringa della foto
+// Stampare su console e sul DOM le informazioni di nome, ruolo e la stringa della foto
 for (let i = 0; i < team.length; i++) {
     const teamMember = team[i];
     console.log("Membro del team:", teamMember);
+    let memberInfos = `Membro ${i+1} `;
     for (const key in teamMember) {
         console.log(key, teamMember[key]);
+        memberInfos += `- ${key}: ${teamMember[key]} `;
     }
+    console.log(memberInfos);
+    const teamMembers = document.querySelector(".team");
+    const member = createTeamMember(memberInfos);
+    teamMembers.append(member);
+}
+
+/////////////////////////
+// FUNCTIONS
+
+/**
+ * Description creo il membro del team
+ * @param {string} infos
+ * @returns {any}
+ */
+function createTeamMember(infos) {
+    const member = document.createElement("li");
+    member.innerHTML = infos;
+    return member;
 }
