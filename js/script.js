@@ -40,7 +40,11 @@ for (let i = 0; i < team.length; i++) {
     let memberInfos = `Membro ${i+1} `;
     for (const key in teamMember) {
         console.log(key, teamMember[key]);
-        memberInfos += `- ${key}: ${teamMember[key]} `;
+        if (key !== "foto") {
+            memberInfos += `- ${key}: ${teamMember[key]} `;
+        } else {
+            memberInfos += `<img src="img/${teamMember[key]}" alt="${teamMember.nome}">`
+        }
     }
     console.log(memberInfos);
     const teamMembers = document.querySelector(".team");
